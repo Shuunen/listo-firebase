@@ -1,6 +1,6 @@
 'use strict';
 
-const functionVersion = '0.0.3'
+const functionVersion = '0.0.4'
 const functions = require('firebase-functions'); // Cloud Functions for Firebase library
 const DialogflowApp = require('actions-on-google').DialogflowApp;
 // Google Assistant helper library
@@ -92,6 +92,16 @@ function processV1Request(request, response) {
     }
 }
 
+/*
+Ok je vais ajouter {{type}} à la liste 👍
+C'est noté ! J'ai ajouté {{type}} à la liste 😊
+J'ai ajouté {{type}} à la liste 😉
+{{type}} a bien été ajouté à la liste 👌
+Ok je vais ajouter "{{thing}}" à la liste 👌
+"{{thing}}" a bien été ajouté à la liste 👌
+J'ajoute "{{thing}}" à la liste 👍
+*/
+
 
 /*
 * Function to handle v2 webhook requests from Dialogflow
@@ -99,10 +109,15 @@ function processV1Request(request, response) {
 function processV2Request(request, response) {
     // An action is a string used to identify what needs to be done in fulfillment
     let action = (request.body.queryResult.action) ? request.body.queryResult.action : 'default';
+    // the fulfillment text from DialogFlow
+    // let fulfillmentText = request.body.queryResult.fulfillmentText;
     // Parameters are any entities that Dialogflow has extracted from the request.
     let parameters = request.body.queryResult.parameters || {}; // https://dialogflow.com/docs/actions-and-parameters
+    // if all params has been given
+    // let allRequiredParamsPresent = request.body.queryResult.allRequiredParamsPresent;
     // Contexts are objects used to track and store conversation state
     let inputContexts = request.body.queryResult.contexts; // https://dialogflow.com/docs/contexts
+    let outputContexts = request.body.queryResult.outputContexts; // https://dialogflow.com/docs/contexts
     // Get the request source (Google Assistant, Slack, API, etc)
     let requestSource = (request.body.originalDetectIntentRequest) ? request.body.originalDetectIntentRequest.source : undefined;
     // Get the session ID to differentiate calls from different users
@@ -121,12 +136,42 @@ function processV2Request(request, response) {
         },
         // Default handler for unknown or undefined actions
         'default': () => {
-            let responseToUser = {
-                fulfillmentMessages: richResponsesV2, // Optional, uncomment to enable
-                //outputContexts: [{ 'name': `${session}/contexts/weather`, 'lifespanCount': 2, 'parameters': {'city': 'Rome'} }], // Optional, uncomment to enable
-                fulfillmentText: 'Réponse par default' // displayed response
-            };
-            sendResponse(responseToUser);
+            let thing = parameters['thing-to-watch'];
+            if (!thing && outputContexts && outputContexts.length) {
+                outputContexts.forEach(outputContext => {
+                    if (!thing && outputContext.parameters && outputContext.parameters['thing-to-watch']) {
+                        thing = outputContext.parameters['thing-to-watch'];
+                    }
+                })
+                console.log('thing was not given in parameters')
+                console.log((thing.length ? 'but thing was found' : 'and also not found') + ' in output context')
+            }
+            let type = parameters['type-of-thing'];
+            type = type.replace('movie', 'ce film').replace('serie', 'cette série').replace('music', 'cette musique');
+            let fulfillmentText = '';
+            let response = {};
+            let addRichResponse = false;
+            if (thing.length && type.length) {
+                // Case 1 : we have thing & type
+                fulfillmentText = 'Ok je vais ajouter {type} "{thing}" à la liste 👍';
+            } else if (thing.length) {
+                // Case 2 : we have only thing
+                fulfillmentText = '"{thing}" ? C\'est un film, une série, une musique ?';
+                // ask for type
+                addRichResponse = true;
+            } else {
+                // Case 3 : we miss thing
+                fulfillmentText = 'Je n\'ai pas saisi votre demande, quelle oeuvre essayez-vous d\'ajouter ?';
+            }
+            fulfillmentText = fulfillmentText.replace('{type}', type);
+            fulfillmentText = fulfillmentText.replace('{thing}', thing)
+            fulfillmentText = capitalizeFirstLetter(fulfillmentText);
+            fulfillmentText += ' ' + functionVersion;
+            response.fulfillmentText = fulfillmentText;
+            if (addRichResponse) {
+                response.fulfillmentMessages = buildRichResponseV2(fulfillmentText);
+            }
+            sendResponse(response);
         }
     };
 
@@ -166,37 +211,52 @@ function processV2Request(request, response) {
     }
 }
 
-const pleaseChoose = `Merci de choisir parmis les réponses ci-dessous : ${functionVersion}`
-
-const richResponsesV2 = [
-    { // this first object is mandatory
-        'platform': 'ACTIONS_ON_GOOGLE',
-        'simple_responses': {
-            'simple_responses': [
-                {
-                    'text_to_speech': pleaseChoose,
-                    'display_text': pleaseChoose
-                }
-            ]
+function buildRichResponseV2(title) {
+    return [
+        { // this first object is mandatory
+            'platform': 'ACTIONS_ON_GOOGLE',
+            'simple_responses': {
+                'simple_responses': [
+                    {
+                        'text_to_speech': title,
+                        'display_text': title
+                    }
+                ]
+            }
+        },
+        {
+            'platform': 'ACTIONS_ON_GOOGLE',
+            'suggestions': { // dont forget to put suggestions into a suggestions object -_-'''''''
+                suggestions: [
+                    { "title": "Film" },
+                    { "title": "Série" },
+                    { "title": "Musique" }
+                ]
+            }
         }
-    },
-    {
-        'platform': 'ACTIONS_ON_GOOGLE',
-        'listSelect': {
-            'items': [
-                {
-                    "info": { "key": 'film' },
-                    "title": "Film",
-                },
-                {
-                    "info": { "key": 'série' },
-                    "title": "Série",
-                },
-                {
-                    "info": { "key": 'musique' },
-                    "title": "Musique",
-                },
-            ]
-        }
-    },
-];
+        /* THIS DOES NOT WORKS
+        // it return an intent.action.OPTION instead of actions.intent.TEXT like suggestions does above
+        // and break the response from user and is not catched by addathingtowatchlist-followup
+        // -_-''''
+        {
+            'platform': 'ACTIONS_ON_GOOGLE',
+            'listSelect': {
+                'items': [
+                    {
+                        "info": { "key": 'movie' },
+                        "title": "Film",
+                    },
+                    {
+                        "info": { "key": 'serie' },
+                        "title": "Série",
+                    },
+                    {
+                        "info": { "key": 'music' },
+                        "title": "Musique",
+                    },
+                ]
+            }
+        },
+        */
+    ]
+}

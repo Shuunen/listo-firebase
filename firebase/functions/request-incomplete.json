@@ -1,0 +1,184 @@
+{
+    "responseId": "d479004c-8e7a-4a48-b08a-1c280595ef4e",
+    "queryResult": {
+        "queryText": "ajoute Polak",
+        "action": "add",
+        "parameters": {
+            "thing-to-watch": "Polak",
+            "type-of-thing": ""
+        },
+        "fulfillmentText": "Qu'est ce que \"Polak\" ? Un film, une musique, une série ?",
+        "fulfillmentMessages": [
+            {
+                "platform": "ACTIONS_ON_GOOGLE",
+                "simpleResponses": {
+                    "simpleResponses": [
+                        {
+                            "textToSpeech": "Qu'est ce que \"Polak\" ? Un film, une musique, une série ?"
+                        }
+                    ]
+                }
+            },
+            {
+                "text": {
+                    "text": [
+                        "Qu'est ce que \"Polak\" ? Un film, une musique, une série ?"
+                    ]
+                }
+            }
+        ],
+        "outputContexts": [
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/be719a05-93e4-4c46-85e0-17803365c3e6_id_dialog_context",
+                "lifespanCount": 2,
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "",
+                    "type-of-thing": "",
+                    "thing-to-watch": "Polak"
+                }
+            },
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/add_a_thing_to_watchlist_dialog_context",
+                "lifespanCount": 2,
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "",
+                    "type-of-thing": "",
+                    "thing-to-watch": "Polak"
+                }
+            },
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/actions_capability_screen_output",
+                "lifespanCount": 1,
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "",
+                    "type-of-thing": "",
+                    "thing-to-watch": "Polak"
+                }
+            },
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/google_assistant_input_type_voice",
+                "lifespanCount": 1,
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "",
+                    "type-of-thing": "",
+                    "thing-to-watch": "Polak"
+                }
+            },
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/actions_capability_audio_output",
+                "lifespanCount": 1,
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "",
+                    "type-of-thing": "",
+                    "thing-to-watch": "Polak"
+                }
+            },
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/actions_capability_web_browser",
+                "lifespanCount": 1,
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "",
+                    "type-of-thing": "",
+                    "thing-to-watch": "Polak"
+                }
+            },
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/actions_capability_media_response_audio",
+                "lifespanCount": 1,
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "",
+                    "type-of-thing": "",
+                    "thing-to-watch": "Polak"
+                }
+            },
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/add_a_thing_to_watchlist_dialog_params_type-of-thing",
+                "lifespanCount": 1,
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "",
+                    "type-of-thing": "",
+                    "thing-to-watch": "Polak"
+                }
+            }
+        ],
+        "intent": {
+            "name": "projects/popop-83a3e/agent/intents/be719a05-93e4-4c46-85e0-17803365c3e6",
+            "displayName": "add a thing to watchlist"
+        },
+        "intentDetectionConfidence": 1,
+        "diagnosticInfo": {},
+        "languageCode": "fr-fr"
+    },
+    "originalDetectIntentRequest": {
+        "source": "google",
+        "version": "2",
+        "payload": {
+            "isInSandbox": true,
+            "surface": {
+                "capabilities": [
+                    {
+                        "name": "actions.capability.WEB_BROWSER"
+                    },
+                    {
+                        "name": "actions.capability.MEDIA_RESPONSE_AUDIO"
+                    },
+                    {
+                        "name": "actions.capability.SCREEN_OUTPUT"
+                    },
+                    {
+                        "name": "actions.capability.AUDIO_OUTPUT"
+                    }
+                ]
+            },
+            "inputs": [
+                {
+                    "rawInputs": [
+                        {
+                            "query": "ajoute Polak",
+                            "inputType": "VOICE"
+                        }
+                    ],
+                    "arguments": [
+                        {
+                            "rawText": "ajoute Polak",
+                            "textValue": "ajoute Polak",
+                            "name": "text"
+                        }
+                    ],
+                    "intent": "actions.intent.TEXT"
+                }
+            ],
+            "user": {
+                "lastSeen": "2018-03-06T13:30:28Z",
+                "locale": "fr-FR",
+                "userId": "ABwppHFDjDdzGxrkgeZwUqvUmdIzt9qzivOU0W9jVQwSdn2cCm6rOIQWVcloobdfSZkAY_kmDFbZ1Dk"
+            },
+            "conversation": {
+                "conversationId": "1520343510940",
+                "type": "ACTIVE",
+                "conversationToken": "[]"
+            },
+            "availableSurfaces": [
+                {
+                    "capabilities": [
+                        {
+                            "name": "actions.capability.SCREEN_OUTPUT"
+                        },
+                        {
+                            "name": "actions.capability.AUDIO_OUTPUT"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "session": "projects/popop-83a3e/agent/sessions/1520343510940"
+}

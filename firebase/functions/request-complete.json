@@ -1,0 +1,143 @@
+{
+    "responseId": "df51a355-e1d0-424c-a36f-375ce8849b41",
+    "queryResult": {
+        "queryText": "ajoute la musique Polak",
+        "action": "add",
+        "parameters": {
+            "thing-to-watch": "Polak",
+            "type-of-thing": "music"
+        },
+        "allRequiredParamsPresent": true,
+        "fulfillmentText": "C'est noté ! J'ai ajouté {type} à la liste 😊",
+        "fulfillmentMessages": [
+            {
+                "platform": "ACTIONS_ON_GOOGLE",
+                "simpleResponses": {
+                    "simpleResponses": [
+                        {
+                            "textToSpeech": "\"{thing}\" a bien été ajouté à la liste 👌"
+                        }
+                    ]
+                }
+            },
+            {
+                "text": {
+                    "text": [
+                        "C'est noté ! J'ai ajouté {type} à la liste 😊"
+                    ]
+                }
+            }
+        ],
+        "outputContexts": [
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/actions_capability_screen_output",
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "musique",
+                    "type-of-thing": "music",
+                    "thing-to-watch": "Polak"
+                }
+            },
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/actions_capability_audio_output",
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "musique",
+                    "type-of-thing": "music",
+                    "thing-to-watch": "Polak"
+                }
+            },
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/google_assistant_input_type_voice",
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "musique",
+                    "type-of-thing": "music",
+                    "thing-to-watch": "Polak"
+                }
+            },
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/actions_capability_web_browser",
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "musique",
+                    "type-of-thing": "music",
+                    "thing-to-watch": "Polak"
+                }
+            },
+            {
+                "name": "projects/popop-83a3e/agent/sessions/1520343510940/contexts/actions_capability_media_response_audio",
+                "parameters": {
+                    "thing-to-watch.original": "Polak",
+                    "type-of-thing.original": "musique",
+                    "type-of-thing": "music",
+                    "thing-to-watch": "Polak"
+                }
+            }
+        ],
+        "intent": {
+            "name": "projects/popop-83a3e/agent/intents/be719a05-93e4-4c46-85e0-17803365c3e6",
+            "displayName": "add a thing to watchlist"
+        },
+        "intentDetectionConfidence": 1,
+        "diagnosticInfo": {},
+        "languageCode": "fr-fr"
+    },
+    "originalDetectIntentRequest": {
+        "source": "google",
+        "version": "2",
+        "payload": {
+            "isInSandbox": true,
+            "surface": {
+                "capabilities": [
+                    {
+                        "name": "actions.capability.MEDIA_RESPONSE_AUDIO"
+                    },
+                    {
+                        "name": "actions.capability.WEB_BROWSER"
+                    },
+                    {
+                        "name": "actions.capability.AUDIO_OUTPUT"
+                    },
+                    {
+                        "name": "actions.capability.SCREEN_OUTPUT"
+                    }
+                ]
+            },
+            "inputs": [
+                {
+                    "rawInputs": [
+                        {
+                            "query": "ajoute la musique Polak",
+                            "inputType": "VOICE"
+                        }
+                    ],
+                    "intent": "actions.intent.TEXT"
+                }
+            ],
+            "user": {
+                "lastSeen": "2018-03-06T13:30:28Z",
+                "locale": "fr-FR",
+                "userId": "ABwppHFDjDdzGxrkgeZwUqvUmdIzt9qzivOU0W9jVQwSdn2cCm6rOIQWVcloobdfSZkAY_kmDFbZ1Dk"
+            },
+            "conversation": {
+                "conversationId": "1520343510940",
+                "type": "ACTIVE",
+                "conversationToken": "[\"actions_capability_audio_output\",\"actions_capability_media_response_audio\",\"actions_capability_screen_output\",\"actions_capability_web_browser\",\"add_a_thing_to_watchlist_dialog_context\",\"add_a_thing_to_watchlist_dialog_params_type-of-thing\",\"be719a05-93e4-4c46-85e0-17803365c3e6_id_dialog_context\",\"google_assistant_input_type_voice\"]"
+            },
+            "availableSurfaces": [
+                {
+                    "capabilities": [
+                        {
+                            "name": "actions.capability.AUDIO_OUTPUT"
+                        },
+                        {
+                            "name": "actions.capability.SCREEN_OUTPUT"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "session": "projects/popop-83a3e/agent/sessions/1520343510940"
+}
