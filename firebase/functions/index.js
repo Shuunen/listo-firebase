@@ -11,7 +11,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
         return processV2Request(request, response);
     } else {
         console.log('Invalid Request');
-        return response.status(400).end('Invalid Webhook Request (expecting v1 webhook request)');
+        return response.status(400).end('Invalid Webhook Request (expecting v2 webhook request)');
     }
 });
 
@@ -112,19 +112,19 @@ function processV2Request(request, response) {
     const actionHandlers = {
         // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
         'input.welcome': () => {
-            sendResponse('Hello, Welcome to my Dialogflow agent!'); // Send simple response to user
+            sendResponse('Réponse à input.welcome'); // Send simple response to user
         },
         // The default fallback intent has been matched, try to recover (https://dialogflow.com/docs/intents#fallback_intents)
         'input.unknown': () => {
             // Use the Actions on Google lib to respond to Google requests; for other requests use JSON
-            sendResponse('I\'m having trouble, can you try that again?'); // Send simple response to user
+            sendResponse('Réponse à input.unknown'); // Send simple response to user
         },
         // Default handler for unknown or undefined actions
         'default': () => {
             let responseToUser = {
                 fulfillmentMessages: richResponsesV2, // Optional, uncomment to enable
                 //outputContexts: [{ 'name': `${session}/contexts/weather`, 'lifespanCount': 2, 'parameters': {'city': 'Rome'} }], // Optional, uncomment to enable
-                fulfillmentText: 'This is from Dialogflow\'s Cloud Functions for Firebase editor ! 😎' // displayed response
+                fulfillmentText: 'Réponse par default' // displayed response
             };
             sendResponse(responseToUser);
         }
@@ -166,7 +166,7 @@ function processV2Request(request, response) {
     }
 }
 
-const pleaseChoose = 'Merci de choisir parmis les réponses ci-dessous :'
+const pleaseChoose = `Merci de choisir parmis les réponses ci-dessous : ${functionVersion}`
 
 const richResponsesV2 = [
     { // this first object is mandatory
@@ -182,21 +182,13 @@ const richResponsesV2 = [
     },
     {
         'platform': 'ACTIONS_ON_GOOGLE',
-        'basic_card': {
-            'title': 'Title: this is a title',
-            'subtitle': 'This is an subtitle.',
+        'basicCard': {
+            'title': 'My card',
             'formatted_text': 'Body text can include unicode characters including emoji 📱.',
             'image': {
+                'accessibility_text': 'an image',
                 'image_uri': 'https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png'
             },
-            'buttons': [
-                {
-                    'title': 'This is a button',
-                    'open_uri_action': {
-                        'uri': 'https://assistant.google.com/'
-                    }
-                }
-            ]
         }
     },
 ];
