@@ -1,6 +1,6 @@
 'use strict';
 
-const functionVersion = '0.0.2'
+const functionVersion = '0.0.3'
 const functions = require('firebase-functions'); // Cloud Functions for Firebase library
 const DialogflowApp = require('actions-on-google').DialogflowApp;
 // Google Assistant helper library
@@ -182,13 +182,21 @@ const richResponsesV2 = [
     },
     {
         'platform': 'ACTIONS_ON_GOOGLE',
-        'basicCard': {
-            'title': 'My card',
-            'formatted_text': 'Body text can include unicode characters including emoji 📱.',
-            'image': {
-                'accessibility_text': 'an image',
-                'image_uri': 'https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png'
-            },
+        'listSelect': {
+            'items': [
+                {
+                    "info": { "key": 'film' },
+                    "title": "Film",
+                },
+                {
+                    "info": { "key": 'série' },
+                    "title": "Série",
+                },
+                {
+                    "info": { "key": 'musique' },
+                    "title": "Musique",
+                },
+            ]
         }
     },
 ];
