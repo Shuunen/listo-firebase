@@ -14,92 +14,21 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
         return response.status(400).end('Invalid Webhook Request (expecting v2 webhook request)');
     }
 });
+// Imports the Google Cloud client library
+const Datastore = require('@google-cloud/datastore');
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 /*
-* Function to handle v1 webhook requests from Dialogflow
-*/
-function processV1Request(request, response) {
-    let { action, parameters, fulfillment } = request.body.result; // https://dialogflow.com/docs/actions-and-parameters
-    // Create handlers for Dialogflow actions as well as a 'default' handler
-    const actionHandlers = {
-        // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
-        'input.welcome': () => {
-            // Use the Actions on Google lib to respond to Google requests; for other requests use JSON
-            sendResponse('Hello, Welcome to my Dialogflow agent!'); // Send simple response to user
-        },
-        // The default fallback intent has been matched, try to recover (https://dialogflow.com/docs/intents#fallback_intents)
-        'input.unknown': () => {
-            // Use the Actions on Google lib to respond to Google requests; for other requests use JSON
-            sendResponse('I\'m having trouble, can you try that again?'); // Send simple response to user
-        },
-        // Default handler for unknown or undefined actions
-        default: () => {
-            // Use the Actions on Google lib to respond to Google requests; for other requests use JSON
-            let response = fulfillment.speech;
-            let type = parameters['type-of-thing'];
-            type = type.replace('movie', 'ce film').replace('serie', 'cette série').replace('music', 'cette musique');
-            response = response.replace('{type}', type);
-            response = response.replace('{thing}', parameters['thing-to-watch'])
-            response = capitalizeFirstLetter(response);
-            response += ` ${functionVersion}`
-            /*
-             "thing-to-watch": "Black Mirror",
-             "type-of-thing": "serie"
-            */
-            const responseToUser = {
-                // data: richResponsesV1, // Optional, uncomment to enable
-                // outputContexts: [{'name': 'weather', 'lifespan': 2, 'parameters': {'city': 'Rome'}}], // Optional, uncomment to enable
-                speech: response, // spoken response
-                text: response, // displayed response
-            };
-            sendResponse(responseToUser);
-        },
-    };
-
-    // If undefined or unknown action use the default handler
-    if (!actionHandlers[action]) {
-        action = 'default';
-    }
-
-    // Run the proper handler function to handle the request from Dialogflow
-    actionHandlers[action]();
-
-    // Function to send correctly formatted responses to Dialogflow which are then sent to the user
-    function sendResponse(responseToUser) {
-        // if the response is a string send it as a response to the user
-        if (typeof responseToUser === 'string') {
-            const responseJson = {};
-            responseJson.speech = responseToUser; // spoken response
-            responseJson.displayText = responseToUser; // displayed response
-            response.json(responseJson); // Send response to Dialogflow
-        } else {
-            // If the response to the user includes rich responses or contexts send them to Dialogflow
-            const responseJson = {};
-            // If speech or displayText is defined, use it to respond (if one isn't defined use the other's value)
-            responseJson.speech = responseToUser.speech || responseToUser.displayText;
-            responseJson.displayText = responseToUser.displayText || responseToUser.speech;
-            // Optional: add rich messages for integrations (https://dialogflow.com/docs/rich-messages)
-            responseJson.data = responseToUser.data;
-            // Optional: add contexts (https://dialogflow.com/docs/contexts)
-            responseJson.contextOut = responseToUser.outputContexts;
-            console.log(`Response to Dialogflow: ${JSON.stringify(responseJson)}`);
-            response.json(responseJson); // Send response to Dialogflow
-        }
-    }
-}
-
-/*
-Ok je vais ajouter {{type}} à la liste 👍
-C'est noté ! J'ai ajouté {{type}} à la liste 😊
-J'ai ajouté {{type}} à la liste 😉
-{{type}} a bien été ajouté à la liste 👌
-Ok je vais ajouter "{{thing}}" à la liste 👌
-"{{thing}}" a bien été ajouté à la liste 👌
-J'ajoute "{{thing}}" à la liste 👍
+Ok je vais ajouter {{type}} à la liste
+C'est noté ! J'ai ajouté {{type}} à la liste
+J'ai ajouté {{type}} à la liste
+{{type}} a bien été ajouté à la liste
+Ok je vais ajouter "{{thing}}" à la liste
+"{{thing}}" a bien été ajouté à la liste
+J'ajoute "{{thing}}" à la liste
 */
 
 
@@ -147,13 +76,14 @@ function processV2Request(request, response) {
                 console.log((thing.length ? 'but thing was found' : 'and also not found') + ' in output context')
             }
             let type = parameters['type-of-thing'];
-            type = type.replace('movie', 'ce film').replace('serie', 'cette série').replace('music', 'cette musique');
+            let niceType = type.replace('movie', 'ce film').replace('serie', 'cette série').replace('music', 'cette musique');
             let fulfillmentText = '';
             let response = {};
             let addRichResponse = false;
             if (thing.length && type.length) {
                 // Case 1 : we have thing & type
                 fulfillmentText = 'Ok je vais ajouter {type} "{thing}" à la liste';
+                addToWatchlist(thing, type)
             } else if (thing.length) {
                 // Case 2 : we have only thing
                 fulfillmentText = '"{thing}" ? C\'est un film, une série, une musique ?';
@@ -163,7 +93,7 @@ function processV2Request(request, response) {
                 // Case 3 : we miss thing
                 fulfillmentText = 'Je n\'ai pas saisi votre demande, quelle oeuvre essayez-vous d\'ajouter ?';
             }
-            fulfillmentText = fulfillmentText.replace('{type}', type);
+            fulfillmentText = fulfillmentText.replace('{type}', niceType);
             fulfillmentText = fulfillmentText.replace('{thing}', thing)
             fulfillmentText = capitalizeFirstLetter(fulfillmentText);
             if (addRichResponse) {
@@ -258,4 +188,30 @@ function buildRichResponseV2(speech, text) {
         },
         */
     ]
+}
+
+// Your Google Cloud Platform project ID
+const projectId = 'popop-83a3e';
+// Creates a client
+const datastore = new Datastore({ projectId });
+
+function addToWatchlist(thing, type) {
+    const kind = 'listo-watchlist';
+    const key = datastore.key(kind);
+    const entity = {
+        key,
+        data: [
+            {
+                name: 'title',
+                value: thing,
+            },
+            {
+                name: 'type',
+                value: type,
+            },
+        ],
+    };
+    datastore.save(entity)
+        .then(() => console.log(`Watchlist entry ${key.id} created successfully :)`))
+        .catch(err => console.error('Error while adding watchlist entry :', err));
 }

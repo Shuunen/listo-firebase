@@ -1,43 +1,43 @@
-[debug] [2018-03-07T10:36:34.075Z] ----------------------------------------------------------------------
-[debug] [2018-03-07T10:36:34.077Z] Command:       /home/rracamier/.nvm/versions/node/v9.0.0/bin/node /home/rracamier/.nvm/versions/node/v9.0.0/bin/firebase serve --only functions:dialogflowFirebaseFulfillment
-[debug] [2018-03-07T10:36:34.078Z] CLI Version:   3.17.4
-[debug] [2018-03-07T10:36:34.078Z] Platform:      linux
-[debug] [2018-03-07T10:36:34.078Z] Node Version:  v9.0.0
-[debug] [2018-03-07T10:36:34.078Z] Time:          Wed Mar 07 2018 11:36:34 GMT+0100 (CET)
-[debug] [2018-03-07T10:36:34.078Z] ----------------------------------------------------------------------
+[debug] [2018-03-07T16:00:33.592Z] ----------------------------------------------------------------------
+[debug] [2018-03-07T16:00:33.595Z] Command:       /home/rracamier/.nvm/versions/node/v9.0.0/bin/node /home/rracamier/.nvm/versions/node/v9.0.0/bin/firebase serve --only functions:dialogflowFirebaseFulfillment
+[debug] [2018-03-07T16:00:33.596Z] CLI Version:   3.17.4
+[debug] [2018-03-07T16:00:33.596Z] Platform:      linux
+[debug] [2018-03-07T16:00:33.596Z] Node Version:  v9.0.0
+[debug] [2018-03-07T16:00:33.596Z] Time:          Wed Mar 07 2018 17:00:33 GMT+0100 (CET)
+[debug] [2018-03-07T16:00:33.596Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-03-07T10:36:34.088Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-03-07T10:36:34.088Z] > authorizing via signed-in user
-[debug] [2018-03-07T10:36:34.090Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-03-07T10:36:34.090Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+[debug] [2018-03-07T16:00:33.606Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-03-07T16:00:33.606Z] > authorizing via signed-in user
+[debug] [2018-03-07T16:00:33.608Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-03-07T16:00:33.608Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
  { refresh_token: '1/RMCHS0gIhUZVnmsGtqtEvsrg1qMSfxUcMkOwS33LKAfD0_a9hus9cKHy4A91TyRJ',
   client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
   client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
   grant_type: 'refresh_token',
   scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Wed Mar 07 2018 11:36:34 GMT+0100 (CET)
-[debug] [2018-03-07T10:36:34.476Z] <<< HTTP RESPONSE 200
-[debug] [2018-03-07T10:36:34.485Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/popop-83a3e  
+ Wed Mar 07 2018 17:00:33 GMT+0100 (CET)
+[debug] [2018-03-07T16:00:33.730Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T16:00:33.739Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/popop-83a3e  
   
- Wed Mar 07 2018 11:36:34 GMT+0100 (CET)
-[debug] [2018-03-07T10:36:35.279Z] <<< HTTP RESPONSE 200
-[debug] [2018-03-07T10:36:35.280Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/popop-83a3e/tokens  
+ Wed Mar 07 2018 17:00:33 GMT+0100 (CET)
+[debug] [2018-03-07T16:00:34.363Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T16:00:34.364Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/popop-83a3e/tokens  
   
- Wed Mar 07 2018 11:36:35 GMT+0100 (CET)
-[debug] [2018-03-07T10:36:35.988Z] <<< HTTP RESPONSE 200
+ Wed Mar 07 2018 17:00:34 GMT+0100 (CET)
+[debug] [2018-03-07T16:00:35.004Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/home/rracamier/projects/listo-firebase/firebase'...
 [info] 
 [info] i  functions: Preparing to emulate functions.
-[debug] [2018-03-07T10:36:36.238Z] Fetching environment
-[debug] [2018-03-07T10:36:36.240Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/popop-83a3e  
+[debug] [2018-03-07T16:00:35.247Z] Fetching environment
+[debug] [2018-03-07T16:00:35.249Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/popop-83a3e  
   
- Wed Mar 07 2018 11:36:36 GMT+0100 (CET)
-[debug] [2018-03-07T10:36:36.240Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/popop-83a3e/apiKeys  
+ Wed Mar 07 2018 17:00:35 GMT+0100 (CET)
+[debug] [2018-03-07T16:00:35.250Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/popop-83a3e/apiKeys  
   
- Wed Mar 07 2018 11:36:36 GMT+0100 (CET)
-[debug] [2018-03-07T10:36:36.981Z] <<< HTTP RESPONSE 200
-[debug] [2018-03-07T10:36:37.188Z] <<< HTTP RESPONSE 200
-[debug] [2018-03-07T10:36:37.189Z] Starting @google-cloud/functions-emulator
-[debug] [2018-03-07T10:36:38.225Z] Parsing function triggers
+ Wed Mar 07 2018 17:00:35 GMT+0100 (CET)
+[debug] [2018-03-07T16:00:35.919Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T16:00:36.190Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T16:00:36.191Z] Starting @google-cloud/functions-emulator
+[debug] [2018-03-07T16:00:37.228Z] Parsing function triggers
 [info] ✔  functions: dialogflowFirebaseFulfillment: http://localhost:5000/popop-83a3e/us-central1/dialogflowFirebaseFulfillment
