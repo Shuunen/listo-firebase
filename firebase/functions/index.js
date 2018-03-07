@@ -1,6 +1,6 @@
 'use strict';
 
-const functionVersion = '0.0.5'
+const functionVersion = '0.0.6'
 const functions = require('firebase-functions'); // Cloud Functions for Firebase library
 const DialogflowApp = require('actions-on-google').DialogflowApp;
 // Google Assistant helper library
