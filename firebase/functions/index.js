@@ -153,7 +153,7 @@ function processV2Request(request, response) {
             let addRichResponse = false;
             if (thing.length && type.length) {
                 // Case 1 : we have thing & type
-                fulfillmentText = 'Ok je vais ajouter {type} "{thing}" à la liste 👍';
+                fulfillmentText = 'Ok je vais ajouter {type} "{thing}" à la liste';
             } else if (thing.length) {
                 // Case 2 : we have only thing
                 fulfillmentText = '"{thing}" ? C\'est un film, une série, une musique ?';
@@ -166,11 +166,10 @@ function processV2Request(request, response) {
             fulfillmentText = fulfillmentText.replace('{type}', type);
             fulfillmentText = fulfillmentText.replace('{thing}', thing)
             fulfillmentText = capitalizeFirstLetter(fulfillmentText);
-            fulfillmentText += ' ' + functionVersion;
-            response.fulfillmentText = fulfillmentText;
             if (addRichResponse) {
-                response.fulfillmentMessages = buildRichResponseV2(fulfillmentText);
+                response.fulfillmentMessages = buildRichResponseV2(fulfillmentText, fulfillmentText + ' ' + functionVersion);
             }
+            response.fulfillmentText = fulfillmentText;
             sendResponse(response);
         }
     };
@@ -211,15 +210,15 @@ function processV2Request(request, response) {
     }
 }
 
-function buildRichResponseV2(title) {
+function buildRichResponseV2(speech, text) {
     return [
         { // this first object is mandatory
             'platform': 'ACTIONS_ON_GOOGLE',
             'simple_responses': {
                 'simple_responses': [
                     {
-                        'text_to_speech': title,
-                        'display_text': title
+                        'text_to_speech': speech,
+                        'display_text': text
                     }
                 ]
             }
