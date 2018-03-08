@@ -1,0 +1,7 @@
+indexes:
+
+- kind: listo-watchlist
+  properties:
+  - name: type
+  - name: added
+    direction: desc
