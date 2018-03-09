@@ -1,43 +1,72 @@
-[debug] [2018-03-08T17:24:14.208Z] ----------------------------------------------------------------------
-[debug] [2018-03-08T17:24:14.210Z] Command:       /home/rracamier/.nvm/versions/node/v9.0.0/bin/node /home/rracamier/.nvm/versions/node/v9.0.0/bin/firebase serve --only functions:dialogflowFirebaseFulfillment
-[debug] [2018-03-08T17:24:14.210Z] CLI Version:   3.17.4
-[debug] [2018-03-08T17:24:14.210Z] Platform:      linux
-[debug] [2018-03-08T17:24:14.210Z] Node Version:  v9.0.0
-[debug] [2018-03-08T17:24:14.211Z] Time:          Thu Mar 08 2018 18:24:14 GMT+0100 (CET)
-[debug] [2018-03-08T17:24:14.211Z] ----------------------------------------------------------------------
+[debug] [2018-03-08T17:32:59.217Z] ----------------------------------------------------------------------
+[debug] [2018-03-08T17:32:59.219Z] Command:       /home/rracamier/.nvm/versions/node/v9.0.0/bin/node /home/rracamier/.nvm/versions/node/v9.0.0/bin/firebase serve --only functions:dialogflowFirebaseFulfillment
+[debug] [2018-03-08T17:32:59.219Z] CLI Version:   3.17.4
+[debug] [2018-03-08T17:32:59.219Z] Platform:      linux
+[debug] [2018-03-08T17:32:59.219Z] Node Version:  v9.0.0
+[debug] [2018-03-08T17:32:59.219Z] Time:          Thu Mar 08 2018 18:32:59 GMT+0100 (CET)
+[debug] [2018-03-08T17:32:59.219Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-03-08T17:24:14.220Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-03-08T17:24:14.220Z] > authorizing via signed-in user
-[debug] [2018-03-08T17:24:14.222Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-03-08T17:24:14.222Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- { refresh_token: '1/RMCHS0gIhUZVnmsGtqtEvsrg1qMSfxUcMkOwS33LKAfD0_a9hus9cKHy4A91TyRJ',
-  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
-  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
-  grant_type: 'refresh_token',
-  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Thu Mar 08 2018 18:24:14 GMT+0100 (CET)
-[debug] [2018-03-08T17:24:14.360Z] <<< HTTP RESPONSE 200
-[debug] [2018-03-08T17:24:14.369Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/popop-83a3e  
+[debug] [2018-03-08T17:32:59.228Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-03-08T17:32:59.228Z] > authorizing via signed-in user
+[debug] [2018-03-08T17:32:59.230Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/popop-83a3e  
   
- Thu Mar 08 2018 18:24:14 GMT+0100 (CET)
-[debug] [2018-03-08T17:24:15.074Z] <<< HTTP RESPONSE 200
-[debug] [2018-03-08T17:24:15.076Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/popop-83a3e/tokens  
+ Thu Mar 08 2018 18:32:59 GMT+0100 (CET)
+[debug] [2018-03-08T17:32:59.299Z] Error: connect ECONNREFUSED 104.197.85.31:443
+    at Object._errnoException (util.js:1031:13)
+    at _exceptionWithHostPort (util.js:1052:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1195:14)
+[error] 
+[error] Error: Server Error. connect ECONNREFUSED 104.197.85.31:443
+[debug] [2018-03-08T17:33:07.889Z] ----------------------------------------------------------------------
+[debug] [2018-03-08T17:33:07.891Z] Command:       /home/rracamier/.nvm/versions/node/v9.0.0/bin/node /home/rracamier/.nvm/versions/node/v9.0.0/bin/firebase serve --only functions:dialogflowFirebaseFulfillment
+[debug] [2018-03-08T17:33:07.891Z] CLI Version:   3.17.4
+[debug] [2018-03-08T17:33:07.891Z] Platform:      linux
+[debug] [2018-03-08T17:33:07.891Z] Node Version:  v9.0.0
+[debug] [2018-03-08T17:33:07.891Z] Time:          Thu Mar 08 2018 18:33:07 GMT+0100 (CET)
+[debug] [2018-03-08T17:33:07.891Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-03-08T17:33:07.901Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-03-08T17:33:07.901Z] > authorizing via signed-in user
+[debug] [2018-03-08T17:33:07.903Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/popop-83a3e  
   
- Thu Mar 08 2018 18:24:15 GMT+0100 (CET)
-[debug] [2018-03-08T17:24:15.659Z] <<< HTTP RESPONSE 200
+ Thu Mar 08 2018 18:33:07 GMT+0100 (CET)
+[debug] [2018-03-08T17:33:07.925Z] Error: connect ECONNREFUSED 104.197.85.31:443
+    at Object._errnoException (util.js:1031:13)
+    at _exceptionWithHostPort (util.js:1052:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1195:14)
+[error] 
+[error] Error: Server Error. connect ECONNREFUSED 104.197.85.31:443
+[debug] [2018-03-08T17:36:51.809Z] ----------------------------------------------------------------------
+[debug] [2018-03-08T17:36:51.812Z] Command:       /home/rracamier/.nvm/versions/node/v9.0.0/bin/node /home/rracamier/.nvm/versions/node/v9.0.0/bin/firebase serve --only functions:dialogflowFirebaseFulfillment
+[debug] [2018-03-08T17:36:51.812Z] CLI Version:   3.17.4
+[debug] [2018-03-08T17:36:51.812Z] Platform:      linux
+[debug] [2018-03-08T17:36:51.812Z] Node Version:  v9.0.0
+[debug] [2018-03-08T17:36:51.812Z] Time:          Thu Mar 08 2018 18:36:51 GMT+0100 (CET)
+[debug] [2018-03-08T17:36:51.812Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-03-08T17:36:51.822Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-03-08T17:36:51.822Z] > authorizing via signed-in user
+[debug] [2018-03-08T17:36:51.824Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/popop-83a3e  
+  
+ Thu Mar 08 2018 18:36:51 GMT+0100 (CET)
+[debug] [2018-03-08T17:36:52.616Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-08T17:36:52.617Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/popop-83a3e/tokens  
+  
+ Thu Mar 08 2018 18:36:52 GMT+0100 (CET)
+[debug] [2018-03-08T17:36:53.242Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/home/rracamier/projects/listo-firebase/firebase'...
 [info] 
 [info] i  functions: Preparing to emulate functions.
-[debug] [2018-03-08T17:24:15.917Z] Fetching environment
-[debug] [2018-03-08T17:24:15.918Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/popop-83a3e  
+[debug] [2018-03-08T17:36:53.479Z] Fetching environment
+[debug] [2018-03-08T17:36:53.480Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/popop-83a3e  
   
- Thu Mar 08 2018 18:24:15 GMT+0100 (CET)
-[debug] [2018-03-08T17:24:15.919Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/popop-83a3e/apiKeys  
+ Thu Mar 08 2018 18:36:53 GMT+0100 (CET)
+[debug] [2018-03-08T17:36:53.481Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/popop-83a3e/apiKeys  
   
- Thu Mar 08 2018 18:24:15 GMT+0100 (CET)
-[debug] [2018-03-08T17:24:16.602Z] <<< HTTP RESPONSE 200
-[debug] [2018-03-08T17:24:17.075Z] <<< HTTP RESPONSE 200
-[debug] [2018-03-08T17:24:17.077Z] Starting @google-cloud/functions-emulator
-[debug] [2018-03-08T17:24:18.115Z] Parsing function triggers
+ Thu Mar 08 2018 18:36:53 GMT+0100 (CET)
+[debug] [2018-03-08T17:36:54.151Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-08T17:36:54.521Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-08T17:36:54.522Z] Starting @google-cloud/functions-emulator
+[debug] [2018-03-08T17:36:55.553Z] Parsing function triggers
 [info] ✔  functions: dialogflowFirebaseFulfillment: http://localhost:5000/popop-83a3e/us-central1/dialogflowFirebaseFulfillment

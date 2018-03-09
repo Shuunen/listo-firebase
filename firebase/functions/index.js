@@ -121,7 +121,7 @@ function processV2Request(request, response) {
             fulfillmentText = fulfillmentText.replace('{thing}', thing)
             fulfillmentText = capitalizeFirstLetter(fulfillmentText);
             if (addRichResponse) {
-                res.fulfillmentMessages = buildRichResponseV2(fulfillmentText, fulfillmentText + ' ' + functionVersion);
+                res.fulfillmentMessages = buildRichResponseV2(fulfillmentText, fulfillmentText);
             }
             res.fulfillmentText = fulfillmentText;
             sendResponse(res);
@@ -169,7 +169,12 @@ function processV2Request(request, response) {
     }
 }
 
+function handleSpeechTexts(speech) {
+    return speech.replace('&', 'et')
+}
+
 function buildRichResponseV2(speech, text) {
+    speech = handleSpeechTexts(speech)
     return [
         { // this first object is mandatory
             'platform': 'ACTIONS_ON_GOOGLE',
