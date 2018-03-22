@@ -11,7 +11,8 @@
   "scripts": {
     "lint": "eslint **.js",
     "start": "firebase serve --only functions:dialogflowFirebaseFulfillment",
-    "deploy": "firebase deploy --only functions:dialogflowFirebaseFulfillment"
+    "deploy": "firebase deploy --only functions:dialogflowFirebaseFulfillment",
+    "https-bridge": "ngrok http 5000 -region eu"
   },
   "dependencies": {
     "@google-cloud/datastore": "^1.3.4",
